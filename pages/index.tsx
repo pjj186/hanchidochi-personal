@@ -3,6 +3,7 @@ import SimpleImageSlider from "react-simple-image-slider";
 import { useEffect, useState } from "react";
 import VideoModal from "../components/Modal/videoModal";
 import ModalPortal from "../components/ModalPortal";
+import { useWindowSize } from "usehooks-ts";
 
 const images = [
   { url: "/images/darkBackground01.png" },
@@ -13,6 +14,8 @@ const images = [
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState<boolean>();
+
+  const { width, height } = useWindowSize();
 
   const openModal = () => {
     setModalOpen(true);
@@ -32,20 +35,23 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen">
-      <SimpleImageSlider
-        width="100%"
-        height="100%"
-        images={images}
-        autoPlay={true}
-        showBullets={false}
-        showNavs={false}
-        style={{
-          position: "absolute",
-          zIndex: 0,
-        }}
-      />
-      <main className="flex flex-col justify-center items-center z-10">
-        <div className="flex flex-col items-center z-10 py-10">
+      <main
+        className={`flex flex-col justify-start items-center z-10 relative w-full h-full `}
+      >
+        <SimpleImageSlider
+          width="100%"
+          height="100%"
+          images={images}
+          autoPlay={true}
+          showBullets={false}
+          showNavs={false}
+          style={{
+            position: "absolute",
+            zIndex: 0,
+            objectFit: "contain",
+          }}
+        />
+        <div className="flex flex-col items-center z-10 py-14">
           <Image
             src={`/images/logo03.png`}
             width={80}
@@ -104,18 +110,18 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <div className="flex justify-center items-center absolute bottom-0 h-44 w-full bg-[#ECECEC]">
+      <div className="flex justify-center items-center absolute bottom-0 mb-10 z-10 w-full ">
         <div className="flex">
           <div>
             <Image
               className="mr-10"
-              src={`/images/mainText01.png`}
+              src={`/images/mainText02.png`}
               width={200}
               height={200}
               alt="mainText"
             />
           </div>
-          <div className="flex flex-col text-sm text-[#5B5B5B] mr-2">
+          <div className="flex flex-col text-sm text-white mr-2">
             <span className="mb-1">
               엠엔유튜브(M&Utube) | 주소 전남 나주시 우정로 10 바동 303-1호
             </span>
@@ -134,7 +140,7 @@ export default function Home() {
           </div>
           <div className="flex justify-around w-40">
             <svg
-              className="w-8 h-8 text-[#5B5B5B] "
+              className="w-8 h-8 text-white "
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               stroke="currentColor"
@@ -147,7 +153,7 @@ export default function Home() {
               />
             </svg>
             <svg
-              className="w-8 h-8 text-[#5B5B5B]"
+              className="w-8 h-8 text-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               stroke="currentColor"
@@ -160,7 +166,7 @@ export default function Home() {
               />
             </svg>
             <svg
-              className="w-8 h-8 text-[#5B5B5B]"
+              className="w-8 h-8 text-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               stroke="currentColor"
