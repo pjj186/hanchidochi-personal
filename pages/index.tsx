@@ -75,7 +75,7 @@ export default function Home() {
             height={150}
             alt="mainText"
           />
-          <p className="text-xl text-center mb-20 text-white">
+          <p className="text-xl text-center mb-12 text-white">
             한치두치 어플리케이션은 귀염둥이 루미와 엉뚱한 뚱이와 함께 가고
             싶은곳을 갈 수 있는 앱이에요.
             <br /> 오늘 가고 싶은곳을 루미뚱이에게 말해봐요!
