@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import VideoModal from "../components/Modal/videoModal";
 import ModalPortal from "../components/ModalPortal";
 import { useWindowSize } from "usehooks-ts";
+import ReviewModal from "../components/Modal/reviewModal";
 
 const images = [
   { url: "/images/darkBackground01.png" },
@@ -14,11 +15,19 @@ const images = [
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState<boolean>();
+  const [modalState, setModalState] = useState<string>();
 
   const { width, height } = useWindowSize();
 
-  const openModal = () => {
+  const openVideoModal = () => {
     setModalOpen(true);
+    setModalState("video");
+    document.body.style.overflow = "hidden";
+  };
+
+  const openReviewModal = () => {
+    setModalOpen(true);
+    setModalState("review");
     document.body.style.overflow = "hidden";
   };
 
@@ -72,7 +81,7 @@ export default function Home() {
             <br /> 오늘 가고 싶은곳을 루미뚱이에게 말해봐요!
           </p>
           <svg
-            onClick={openModal}
+            onClick={openVideoModal}
             className="w-16 h-16 cursor-pointer mb-12 text-white"
             fill="none"
             stroke="currentColor"
@@ -98,16 +107,29 @@ export default function Home() {
               src={`/images/downloadAppStore.png`}
               width={200}
               height={200}
-              alt="mainText"
+              alt="DownloadAppStoreButton"
             />
             <Image
               className="cursor-pointer"
               src={`/images/downloadPlayStore.png`}
               width={200}
               height={200}
-              alt="mainText"
+              alt="DownloadPlayStoreButton"
+            />
+            <Image
+              className="cursor-pointer"
+              src={`/images/downloadAPK.png`}
+              width={200}
+              height={200}
+              alt="DownloadAPKButton"
             />
           </div>
+          <button
+            className="text-white mt-4 bg-{#00000046} border border-white rounded-md w-28 h-10 hover:bg-black transition-all"
+            onClick={openReviewModal}
+          >
+            평가하기
+          </button>
         </div>
       </main>
       <div className="flex justify-center items-center absolute bottom-0 mb-10 z-10 w-full ">
@@ -140,7 +162,7 @@ export default function Home() {
           </div>
           <div className="flex justify-around w-40">
             <svg
-              className="w-8 h-8 text-white "
+              className="w-8 h-8 text-white cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               stroke="currentColor"
@@ -153,7 +175,7 @@ export default function Home() {
               />
             </svg>
             <svg
-              className="w-8 h-8 text-white"
+              className="w-8 h-8 text-white cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               stroke="currentColor"
@@ -166,7 +188,7 @@ export default function Home() {
               />
             </svg>
             <svg
-              className="w-8 h-8 text-white"
+              className="w-8 h-8 text-white cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               stroke="currentColor"
@@ -183,7 +205,11 @@ export default function Home() {
       </div>
       {modalOpen ? (
         <ModalPortal>
-          <VideoModal onClose={closeModal} />
+          {modalState === "video" ? (
+            <VideoModal onClose={closeModal} />
+          ) : modalState === "review" ? (
+            <ReviewModal onClose={closeModal} />
+          ) : null}
         </ModalPortal>
       ) : null}
     </div>
