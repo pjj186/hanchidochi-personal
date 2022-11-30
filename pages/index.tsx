@@ -62,8 +62,8 @@ export default function Home() {
           <Image
             src={`/images/mainText02.png`}
             className="mb-20"
-            width={400}
-            height={400}
+            width={450}
+            height={150}
             alt="mainText"
           />
           <p className="text-xl text-center mb-20 text-white">
@@ -116,8 +116,8 @@ export default function Home() {
             <Image
               className="mr-10"
               src={`/images/mainText02.png`}
-              width={200}
-              height={200}
+              width={150}
+              height={50}
               alt="mainText"
             />
           </div>
