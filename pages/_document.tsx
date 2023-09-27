@@ -4,8 +4,7 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-} from "next/document";
-import Script from "next/script";
+} from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -15,11 +14,11 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="scrollbar-hide">
+      <Html className='scrollbar-hide'>
         <Head></Head>
         <body>
           <Main />
-          <div id="modal-root" />
+          <div id='modal-root' />
           <NextScript />
         </body>
       </Html>
